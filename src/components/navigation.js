@@ -44,7 +44,7 @@ const Navigation = () => {
       </span>
       <ul>
         {pageLinks.map((val, index) => (
-          <Link to={val.path}>
+          <Link to={val.path} key={index}>
             <li key={index}>{val.title}</li>
           </Link>
         ))}
