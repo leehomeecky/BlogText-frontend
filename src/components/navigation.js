@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { Avatar } from "antd";
 
 const pageLinks = [
   {
@@ -35,20 +36,37 @@ const pageLinks = [
 //   },
 // ];
 
-const Navigation = () => {
+const Navigation = ({ user }) => {
+  const [menuActive, setMenuActive] = useState(false);
+
   return (
-    <nav className="site-navigation">
+    <nav
+      className={`site-navigation ${menuActive && "active"}`}
+      role="navigation"
+    >
       <span className="logo">
-        {" "}
         Blog<span className="logo-sub">Text</span>
       </span>
-      <ul>
-        {pageLinks.map((val, index) => (
-          <Link to={val.path} key={index}>
-            <li key={index}>{val.title}</li>
-          </Link>
-        ))}
-      </ul>
+      <div className="menu-content-container">
+        <ul>
+          {pageLinks.map((link, index) => (
+            <li key={index}>
+              <Link to={link.path}>{link.title}</Link>
+            </li>
+          ))}
+        </ul>
+        <div className="menu-avatar-container">
+          <Avatar
+            size={50}
+            src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
+          />
+          <span className="menu-avatar-name">{user.firstName}</span>
+        </div>
+      </div>
+      <i
+        className="icon ionicons ion-ios-menu"
+        onClick={(ev) => setMenuActive(!menuActive)}
+      />
     </nav>
   );
 };

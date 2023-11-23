@@ -1,17 +1,22 @@
 import React from "react";
 import Navigation from "./components/navigation";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import PageRenderer from "./page-renderer";
-import NotFound from "./pages/not-found";
+import { NotFound, About, Blog, Contact, Login, SignUp, Home } from "./pages";
 
 function App() {
+  const user = { firstName: "meecky" };
   return (
     <BrowserRouter>
       <div className="App">
-        <Navigation />
+        <Navigation user={user} />
         <Routes>
-          <Route path="/:page" element={<PageRenderer />} />
-          <Route path="/" element={<Navigate to="/home" />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/sign-up" element={<SignUp />} />
+          <Route path="/register" element={<SignUp />} />
+          <Route path="/" element={<Home />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </div>

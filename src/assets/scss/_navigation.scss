@@ -5,8 +5,32 @@
   display: flex;
   justify-content: space-between;
   color: $text-color;
-  position: fixed;
+  //   position: fixed;
   box-shadow: 0px 2px #8c878f;
+
+  .ion-ios-menu {
+    font-size: 36px;
+    width: 65px;
+    align-items: center;
+    cursor: pointer;
+    display: none;
+  }
+
+  .menu-content-container {
+    display: flex;
+    align-items: center;
+    margin-right: 30px;
+
+    .ant-avatar {
+      background-color: $bg-color;
+      border: 1px solid $text-color;
+    }
+
+    .menu-avatar-name {
+      font-size: 18px;
+      margin-left: 15px;
+    }
+  }
 
   .logo {
     font-size: 24px;
@@ -41,6 +65,56 @@
       &:hover {
         color: $text-link;
       }
+    }
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .site-navigation {
+    .menu-content-container {
+      width: 300px;
+      height: calc(100% - 65px);
+      background: #262626;
+      position: fixed;
+      top: 65px;
+      left: -300px;
+      transition: 300ms ease left;
+      flex-direction: column-reverse;
+
+      ul {
+        flex-direction: column;
+        justify-content: flex-start;
+
+        li {
+          text-align: center;
+          height: 65px;
+          display: flex;
+          align-items: center;
+        }
+        a {
+          padding: 20px 15px;
+          width: 100%;
+        }
+      }
+
+      ul,
+      li,
+      .menu-avatar-container {
+        width: 100%;
+      }
+
+      .ant-avatar {
+        align-self: flex-start;
+        margin-left: 30px;
+      }
+    }
+    &.active {
+      .menu-content-container {
+        left: 0px;
+      }
+    }
+    .ion-ios-menu {
+      display: flex;
     }
   }
 }
